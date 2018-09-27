@@ -39,12 +39,12 @@ public class FibonacciServiceTest {
                       extract().
                               response().body().asString();
         int index = 1;
-        // Verify if each number is a fibonacci number else fail the test when the number is not a fibonacci
+        // Verify if each number is a Fibonacci number else fail the test when the number is not a Fibonacci
         for (Long outputNumber : convertBodyToArray(body)) {
             if (isFibonacciNumber(outputNumber)) {
-                LOGGER.info(outputNumber + " is a fibonacci number. Sequence term number: " + index);
+                LOGGER.info(outputNumber + " is a Fibonacci number. Sequence term number: " + index);
             } else {
-                LOGGER.info(outputNumber + " is not a fibonacci number. Sequence term number: " + (index));
+                LOGGER.info(outputNumber + " is not a Fibonacci number. Sequence term number: " + (index));
                 Assert.fail("Application stopped returning correct Fibonacci number from sequence term number: " +(index));
             }
             index++;
@@ -55,8 +55,8 @@ public class FibonacciServiceTest {
     public void verifySingleIndexEndpoint() {
         int index = 0;
         long outputNumber;
-        // Call the single index endpoint indeﬁnitely until application stops returning fibonacci number
-        // (assuming that application will stop giving fibonacci numbers at some point as per spec)
+        // Call the single index endpoint indeﬁnitely until application stops returning Fibonacci number
+        // (assuming that application will stop giving Fibonacci numbers at some point as per spec)
         while (index >= 0) {
             String body =
                     given().
@@ -69,11 +69,11 @@ public class FibonacciServiceTest {
                             response().body().asString();
             index++;
             outputNumber = Long.parseLong(body);
-            // Verify if each number is a fibonacci number else fail the test when the number is not a fibonacci
+            // Verify if each number is a Fibonacci number else fail the test when the number is not a Fibonacci
             if (isFibonacciNumber(outputNumber)) {
-                LOGGER.info(outputNumber + " is a fibonacci number. Sequence term number: " + (index));
+                LOGGER.info(outputNumber + " is a Fibonacci number. Sequence term number: " + (index));
             } else {
-                LOGGER.info(outputNumber + " is not a fibonacci number. Sequence term number: " + (index));
+                LOGGER.info(outputNumber + " is not a Fibonacci number. Sequence term number: " + (index));
                 Assert.fail("Application stopped returning correct Fibonacci number from sequence term number: " +(index));
                 break;
             }
@@ -84,8 +84,8 @@ public class FibonacciServiceTest {
     public void verifyRangeEndpoint() {
         int startIndex = 0;
         int finishIndex = 10;
-        // Call the range endpoint indeﬁnitely to return 10 numbers each time to find when the application stops returning fibonacci number
-        // (assuming that application will stop giving fibonacci numbers at some point as per spec)
+        // Call the range endpoint indeﬁnitely to return 10 numbers each time to find when the application stops returning Fibonacci number
+        // (assuming that application will stop giving Fibonacci numbers at some point as per spec)
         while (startIndex >= 0) {
             String body =
                     given().
@@ -100,13 +100,13 @@ public class FibonacciServiceTest {
                             response().body().asString();
 
             List<Long> outputList = convertBodyToArray(body);
-            // Verify if each number is a fibonacci number else fail the test when an invalid fibonacci is returned
+            // Verify if each number is a Fibonacci number else fail the test when an invalid Fibonacci is returned
             for (Long outputNumber : outputList) {
                 int index = startIndex + outputList.indexOf(outputNumber) + 1;
                 if (isFibonacciNumber(outputNumber)) {
-                    LOGGER.info(outputNumber + " is a fibonacci number. Sequence term number: " + (index));
+                    LOGGER.info(outputNumber + " is a Fibonacci number. Sequence term number: " + (index));
                 } else {
-                    LOGGER.info(outputNumber + " is not a fibonacci number. Sequence term number: " + (index));
+                    LOGGER.info(outputNumber + " is not a Fibonacci number. Sequence term number: " + (index));
                     Assert.fail("Application stopped returning correct Fibonacci number from sequence term number: " + (index));
                 }
 
